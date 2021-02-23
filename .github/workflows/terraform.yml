@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: GIT checkout
         uses: actions/checkout@v2
+      - name: Google Cloud Auth
+        run: gcloud auth application-default login
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v1
       - name: terraform init
