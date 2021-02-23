@@ -11,19 +11,15 @@ jobs:
     steps:
       - name: GIT checkout
         uses: actions/checkout@v2
-      - name: Export GCP Credentials
-        run: echo '${{ secrets.SA_MYMILK_LAB_GCP }}' > ./terraform/credentials.json
-      - name: Test
-        run: echo '${{ secrets.SA_MYMILK_LAB_GCP }}'
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v1
       - name: terraform init
         run: terraform init
         working-directory: ./terraform
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
+          GOOGLE_DEFAULT_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
       - name: terraform plan
         run: terraform plan -var "project_id=mymilk-lab"
         working-directory: ./terraform
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
+          GOOGLE_DEFAULT_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
