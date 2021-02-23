@@ -15,9 +15,11 @@ jobs:
         uses: hashicorp/setup-terraform@v1
       - name: terraform init
         run: terraform init
+        working-directory: ./terraform
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.sa_mymilk_lab_gcp }}
       - name: terraform plan
         run: terraform plan -var "project_id=mymilk-lab"
+        working-directory: ./terraform
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.sa_mymilk_lab_gcp }}
