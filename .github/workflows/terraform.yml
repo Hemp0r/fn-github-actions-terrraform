@@ -11,14 +11,8 @@ jobs:
     steps:
       - name: GIT checkout
         uses: actions/checkout@v2
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
-        with:
-          project_id: "mymilk-lab"
-          service_account_key: ${{ secrets.SA_MYMILK_LAB_GCP }}
-          export_default_credentials: true
       - name: Export GCP Credentials
-        run: export GOOGLE_CREDENTIALS=${{ secrets.SA_MYMILK_LAB_GCP }}
+        run: echo ${{ secrets.SA_MYMILK_LAB_GCP }} > ./terraform/credentials.json
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v1
       - name: terraform init
