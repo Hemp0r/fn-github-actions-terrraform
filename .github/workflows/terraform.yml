@@ -1,0 +1,23 @@
+
+name: Build and deploy (master)
+'on':
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GIT checkout
+        uses: actions/checkout@v2
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v1
+      - name: terraform init
+        run: terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.sa_mymilk_lab_gcp }}
+      - name: terraform plan
+        run: terraform plan -var "project_id=mymilk-lab"
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.sa_mymilk_lab_gcp }}
