@@ -14,7 +14,7 @@ jobs:
       - name: Export GCP Credentials
         run: echo ${{ secrets.SA_MYMILK_LAB_GCP }} > ./terraform/credentials.json
       - name: Test
-        run: echo ${{ secrets.SA_MYMILK_LAB_GCP }}
+        run: echo ${{ secrets.SA_MYMILK_LAB }}
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v1
       - name: terraform init
