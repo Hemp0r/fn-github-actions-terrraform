@@ -17,9 +17,9 @@ jobs:
         run: terraform init
         working-directory: ./terraform
         env:
-          GOOGLE_DEFAULT_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
       - name: terraform plan
         run: terraform plan -var "project_id=mymilk-lab"
         working-directory: ./terraform
         env:
-          GOOGLE_DEFAULT_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.SA_MYMILK_LAB_GCP }}
